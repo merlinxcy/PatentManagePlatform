@@ -1,0 +1,33 @@
+{% extends "login/base.html" %}
+{% block title %}专利用户个人注册{% endblock %}
+{% block body %}
+<body>
+
+
+          <section id="getintouch" class="flipInX animated">
+            <div class='signup_container'>
+              <br>
+              <a href='{{ url_for('auth.register_person') }}' class='register-btn'>个人用户注册</a>
+              <a href='{{ url_for('auth.register_company') }}' class='register-btn'>企业用户注册</a>
+            </div>
+          </section>
+<br>
+<div style="text-align:center;">
+
+</div>
+    </body>
+
+    <script type="text/javascript">
+
+        $(function() {
+
+            $('.rem').click(function() {
+                $(this).toggleClass('selected');
+            })
+
+        })
+
+
+    </script>
+
+{% endblock %}

@@ -1,0 +1,142 @@
+{% extends "login/base.html" %}
+{% block title %}企业用户注册{% endblock %}
+{% block body %}
+    <body>
+
+          <section id="getintouch" class="flipInX animated">
+              <div class="container" style="border-bottom: 0;">
+                  <h1>
+                      <span>企业用户注册</span>
+                  </h1>
+              </div>
+              <div class="container">
+                  <form class="contact" action="#" method="post" id="form">
+                      {{ form.csrf_token }}
+                  <div class="row clearfix">
+                      <div class="lbl">
+                          <label for="name">
+                              公司名</label>
+                      </div>
+                      <div class="ctrl">
+                          <input type="text" id="name" name="name" data-required="true" data-validation="text"
+                              data-msg="Invalid Name" placeholder="Ex: Apple Inc.">
+                      </div>
+                  </div>
+                  <div class="row clearfix">
+                      <div class="lbl">
+                          <label for="card_type">
+                              公司证件号码类型</label>
+                      </div>
+                      <div class="ctrl">
+                          <input type="text" id="card_type" name="card_type" data-required="true" data-validation="custom"
+                              data-msg="Invalid card_type" placeholder="Ex: card_type">
+                      </div>
+                  </div>
+                  <div class="row clearfix">
+                      <div class="lbl">
+                          <label for="card_num">
+                              证件号码</label>
+                      </div>
+                      <div class="ctrl">
+                          <input type="text" name="card_num" id="card_num" placeholder="Ex: card num">
+                      </div>
+                  </div>
+                  <div class="row clearfix">
+                      <div class="lbl">
+                          <label for="location">
+                              总部或营业场所所在地</label>
+                      </div>
+                      <div class="ctrl">
+                          <input type="text" name="location" id="location" placeholder="Ex: Shanghai">
+                      </div>
+                  </div>
+                  <div class="row clearfix">
+                      <div class="lbl">
+                          <label for="mail_code">
+                              邮政编码</label>
+                      </div>
+                      <div class="ctrl">
+                          <input type="text" name="mail_code" id="mail_code" placeholder="Ex: 201105">
+                      </div>
+                  </div>
+                  <div class="row clearfix">
+                      <div class="lbl">
+                          <label for="address">
+                              详细地址</label>
+                      </div>
+                      <div class="ctrl">
+                          <input type="text" name="address" id="address" placeholder="Ex: 地址">
+                      </div>
+                  </div>
+                  <div class="row clearfix">
+                      <div class="lbl">
+                          <label for="password">
+                              密码</label>
+                      </div>
+                      <div class="ctrl">
+                          <input type="password" name="password" id="password" placeholder="Ex: xxxxxx">
+                      </div>
+                  </div>
+                  <div class="row clearfix">
+                      <div class="lbl">
+                          <label for="password_2">
+                              确认密码</label>
+                      </div>
+                      <div class="ctrl">
+                          <input type="password" name="password_2" id="password_2" placeholder="Ex: xxxxxx">
+                      </div>
+                  </div>
+                  <div class="row clearfix">
+                      <div class="lbl">
+                          <label for="email">
+                              电子邮箱</label>
+                      </div>
+                      <div class="ctrl">
+                          <input type="text" name="email" id="email" placeholder="Ex: email">
+                      </div>
+                  </div>
+                  <div class="row clearfix">
+                      <div class="lbl">
+                          <label for="phone">
+                              联系人手机号码</label>
+                      </div>
+                      <div class="ctrl">
+                          <input type="text" name="phone" id="phone" placeholder="Ex: 13800138000">
+                      </div>
+                  </div>
+                  <div class="row clearfix">
+                      <div class="lbl">
+                          <label for="per_name">
+                              联系人姓名</label>
+                      </div>
+                      <div class="ctrl">
+                          <input type="text" name="per_name" id="per_name" placeholder="Ex: steven">
+                      </div>
+                  </div>
+                  <div class="row  clearfix">
+                      <div class="span10 offset2">
+                          <input type="submit" name="submit" id="submit" class="submit" value="注册">
+                      </div>
+                  </div>
+                  </form>
+              </div>
+          </section>
+<div style="text-align:center;">
+<p>版权所有</p>
+</div>
+    </body>
+
+    <script type="text/javascript">
+
+        $(function() {
+
+            $('.rem').click(function() {
+                $(this).toggleClass('selected');
+            })
+
+        })
+
+
+    </script>
+
+{% endblock %}

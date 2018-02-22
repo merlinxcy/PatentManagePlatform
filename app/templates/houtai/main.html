@@ -1,0 +1,12 @@
+{% extends 'houtai/base.html' %}
+{% block title %}个人用户专利控制台{% endblock %}
+{% block body %}
+<frameset rows="100,*" cols="*" scrolling="No" framespacing="0"
+	frameborder="no" border="0"> <frame src="{{ url_for('main.head') }}"
+	name="headmenu" id="mainFrame" title="mainFrame"><!-- 引用头部 -->
+<!-- 引用左边和主体部分 --> <frameset rows="100*" cols="220,*" scrolling="No"
+	framespacing="0" frameborder="no" border="0"> <frame
+	src="{{ url_for('main.left') }}" name="leftmenu" id="mainFrame" title="mainFrame">
+<frame src="{{ url_for('main.blank') }}" name="main" scrolling="yes" noresize="noresize"
+	id="rightFrame" title="rightFrame"></frameset></frameset>
+{% endblock %}

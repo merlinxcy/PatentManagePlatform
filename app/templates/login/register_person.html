@@ -1,0 +1,130 @@
+{% extends "login/base.html" %}
+{% block title %}专利用户个人注册{% endblock %}
+{% block body %}
+    <body>
+          <section id="getintouch" class="flipInX animated">
+              <div class="container" style="border-bottom: 0;">
+                  <h1>
+                      <span>个人用户注册</span>
+                  </h1>
+              </div>
+              <div class="container">
+                  <form class="register_form" action="{{ url_for('auth.register_person') }}" method="post" id="form">
+                  {{ form.csrf_token }}
+                      <div class="row clearfix">
+                      <div class="lbl">
+                          <label for="phone">
+                              手机号码</label>
+                      </div>
+                      <div class="ctrl">
+                          <input type="text" id="phone" name="phone" data-required="true" data-validation="text"
+                              data-msg="Invalid Phone" placeholder="Ex: 13800138000">
+                      </div>
+                  </div>
+                  <div class="row clearfix">
+                      <div class="lbl">
+                          <label for="name">
+                              姓名</label>
+                      </div>
+                      <div class="ctrl">
+                          <input type="text" id="name" name="name" data-required="true" data-validation="text"
+                              data-msg="Invalid name" placeholder="Ex: steven">
+                      </div>
+                  </div>
+                  <div class="row clearfix">
+                      <div class="lbl">
+                          <label for="location">
+                              地区</label>
+                      </div>
+                      <div class="ctrl">
+                          <input type="text" id="location" name="location" data-required="true" data-validation="custom"
+                              data-msg="Invalid location" placeholder="Ex: China">
+                      </div>
+                  </div>
+                  <div class="row clearfix">
+                      <div class="lbl">
+                          <label for="card_type">
+                              证件类型</label>
+                      </div>
+                      <div class="ctrl">
+                          <input type="text" name="card_type" id="card_type" placeholder="Ex: passport">
+                      </div>
+                  </div>
+                  <div class="row clearfix">
+                      <div class="lbl">
+                          <label for="subject">
+                              证件号码</label>
+                      </div>
+                      <div class="ctrl">
+                          <input type="text" name="card_num" id="card_num" placeholder="Ex: 31011200000000000">
+                      </div>
+                  </div>
+                  <div class="row clearfix">
+                      <div class="lbl">
+                          <label for="subject">
+                              详细地址</label>
+                      </div>
+                      <div class="ctrl">
+                          <input type="text" name="address" id="address" placeholder="Ex: xxxxx">
+                      </div>
+                  </div>
+                  <div class="row clearfix">
+                      <div class="lbl">
+                          <label for="subject">
+                              密码</label>
+                      </div>
+                      <div class="ctrl">
+                          <input type="password" name="password" id="password" placeholder="Ex: xxx">
+                      </div>
+                  </div>
+                  <div class="row clearfix">
+                      <div class="lbl">
+                          <label for="subject">
+                              确认密码</label>
+                      </div>
+                      <div class="ctrl">
+                          <input type="password" name="password_2" id="password_2" placeholder="Ex: xxx">
+                      </div>
+                  </div>
+                  <div class="row clearfix">
+                      <div class="lbl">
+                          <label for="subject">
+                              电子邮箱</label>
+                      </div>
+                      <div class="ctrl">
+                          <input type="text" name="email" id="email" placeholder="Ex: 1123@qq.com">
+                      </div>
+                  </div>
+                  <div class="row  clearfix">
+                      <div class="span10 offset2">
+                          <input type="submit" name="submit" id="submit" class="submit" value="注册">
+                      </div>
+                  </div>
+                  </form>
+              </div>
+          </section>
+<div style="text-align:center;">
+<p>版权所有</p>
+</div>
+    </body>
+
+    <script type="text/javascript">
+
+        $(function() {
+
+            $('.submit').click(function() {
+                if($('#password').val === $('#password_2').val)
+                {
+                    $('.register_form').submit();
+                }
+                else{
+                    alert('两次密码输入不相同');
+                }
+            })
+
+        })
+
+
+    </script>
+
+{% endblock %}

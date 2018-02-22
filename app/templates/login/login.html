@@ -1,0 +1,51 @@
+{% extends "login/base.html" %}
+{% block title %}专利用户登录{% endblock %}
+{% block body %}
+    <body>
+          <section id="getintouch" class="flipInX animated">
+            <div class='signup_container'>
+                <h1 class='signup_title'>用户登录</h1>
+                <img src='{{ url_for('static',filename='images/people.png')}}' id='admin' />
+                <div id="signup_forms" class="signup_forms clearfix">
+                    <form class="signup_form_form" id="signup_form" method="post" action="{{ url_for('auth.login')}}" data-secure-action="#" data-secure-ajax-action="">
+                        {{ form.csrf_token }}
+                        <div class="form_row first_row">
+                            <label for="signup_email">请输入用户名</label><div class='tip ok'></div>
+                            <!--<input type="text" name="username" placeholder="请输入用户名" id="username" data-required="required">-->
+                            {{ form.username(placeholder='请输入用户名') }}
+                        </div>
+                        <div class="form_row">
+                            <label for="signup_password">请输入密码</label><div class='tip error'></div>
+                            <!--<input type="password" name="password" placeholder="请输入密码" id="password" data-required="required">-->
+                            {{ form.password(placeholder='请输入密码') }}
+                        </div>
+                    </form>
+                </div>
+                <div class="login-btn-set">
+                    <!--<div class='rem'>记住我</div> 暂时不去实现这个功能-->
+                    <a id='form_submit' href='javascript:void(0)' class='login-btn'></a>
+                </div>
+                  <a href='{{ url_for('auth.register') }}' class='register-btn'>没有账号？</a>
+
+            </div>
+          </section>
+<br>
+<div style="text-align:center;">
+  <p class='copyright'>版权所有</p>
+</div>
+    </body>
+
+    <script type="text/javascript">
+
+        $(function() {
+
+            $('#form_submit').click(function() {
+                $('.signup_form_form').submit();
+            })
+
+        })
+
+
+    </script>
+
+{% endblock %}

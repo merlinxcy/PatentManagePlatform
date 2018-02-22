@@ -1,0 +1,17 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>{% block title %}{% endblock %}</title>
+        <!--<link rel="stylesheet" href="{{ url_for('static', filename='css/layui.css') }}"  media="all">-->
+        <script src="{{ url_for('static',filename='js/jquery-1.8.0.min.js') }}" type="text/javascript" ></script>
+        <!--<script src="{{ url_for('static',filename='js/layui.js') }}" charset="utf-8"></script>-->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/public.css') }}"  media="all">
+        <script type="text/javascript" src="{{ url_for('static',filename='js/public.js') }}"></script>
+    </head>
+{% block body %}
+{% endblock %}
+{% for message in get_flashed_messages() %}
+            <script>alert('{{ message }}');</script>
+{% endfor %}
+</html>
