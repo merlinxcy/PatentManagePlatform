@@ -1,2 +1,12 @@
 # PatentManagePlatform
-随便写写
+随便帮人写写
+
+
+
+
+
+
+
+
+
+
