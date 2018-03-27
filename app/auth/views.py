@@ -1,10 +1,10 @@
 #! -*-coding:utf-8 -*-
 import hashlib
-from flask import render_template, redirect, url_for, request, flash
+from flask import render_template, redirect, url_for, request, flash, session
 from flask_login import login_user, logout_user, login_required, current_user
 
 from . import auth
-from ..models import UserLoginModel,PersonRegisterModel,db
+from ..models import UserLoginModel,PersonRegisterModel,CompanyRegisterModel,db
 from forms import UserLoginForm,RegisterCompanyForm,RegisterPersonForm
 
 
@@ -20,6 +20,7 @@ def login():
             md5.update(password)
             password = md5.hexdigest()
             user = UserLoginModel.query.filter_by(username=username).first()
+            session['username'] = username
             if user:
                 db_password = user.password
                 if db_password and db_password == password:
@@ -103,11 +104,43 @@ def register_person():
 def register_company():
     form = RegisterCompanyForm()
     if request.method == 'POST':
+        print form.validate_on_submit()
         if form.validate_on_submit():
-            return form.email.data
+            if CompanyRegisterModel.query.filter_by(mail_address=form.email.data).first() or UserLoginModel.query.filter_by(username=form.email.data).first():
+                flash('用户已注册')
+                return redirect(url_for('auth.register_company'))
+            else:
+                username = form.email.data
+                password = form.password.data
+                md5 = hashlib.md5()
+                md5.update(password)
+                password = md5.hexdigest()
+                obj = UserLoginModel(username=username, password=password)
+                db.session.add(obj)
+                db.session.commit()
+                #register
+                length = len(CompanyRegisterModel.query.all())
+                id = length + 1
+                name = form.name.data
+                card_type = form.card_type.data
+                card_num = form.card_num.data
+                company_location = form.location.data
+                location_code = form.mail_code.data
+                address = form.address.data
+                mail_address = form.email.data
+                per_name = form.per_name.data
+                per_phone = form.per_phone.data
+                obj = CompanyRegisterModel(id=id, name=name, card_type=card_type,card_num=card_num,
+                                           company_location=company_location,location_code=location_code,
+                                           address=address,mail_address=mail_address,per_name=per_name,
+                                           per_phone=per_phone)
+                db.session.add(obj)
+                db.session.commit()
+                flash('个人用户注册成功')
+                return redirect(url_for('auth.login'))
         return 'post'
     else:
-        return render_template('login/register_company.html',form=form)
+        return render_template('login/register_company.html', form=form)
 
 
 

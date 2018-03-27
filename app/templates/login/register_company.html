@@ -10,7 +10,7 @@
                   </h1>
               </div>
               <div class="container">
-                  <form class="contact" action="#" method="post" id="form">
+                  <form class="contact" action="{{ url_for('auth.register_company') }}" method="post" id="form">
                       {{ form.csrf_token }}
                   <div class="row clearfix">
                       <div class="lbl">
@@ -101,7 +101,7 @@
                               联系人手机号码</label>
                       </div>
                       <div class="ctrl">
-                          <input type="text" name="phone" id="phone" placeholder="Ex: 13800138000">
+                          <input type="text" name="per_phone" id="per_phone" placeholder="Ex: 13800138000">
                       </div>
                   </div>
                   <div class="row clearfix">

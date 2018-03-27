@@ -8,30 +8,29 @@
   <legend>专利申请单</legend>
 </fieldset>
 
-<form class="layui-form" action="">
+<form class="layui-form" action="{{ url_for('main.patent_apply') }}" method="post">
   <div class="layui-form-item">
     <label class="layui-form-label">发明名称</label>
     <div class="layui-input-block">
-      <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入名称" class="layui-input">
+      <input type="text" name="name" lay-verify="title" autocomplete="off" placeholder="请输入名称" class="layui-input">
     </div>
   </div>
   <div class="layui-form-item">
     <label class="layui-form-label">专利类别</label>
     <div class="layui-input-block">
-      <select name="interest" lay-filter="aihao">
-        <option value=""></option>
-        <option value="0">计算机</option>
-        <option value="1" selected="">生化</option>
-        <option value="2">建筑学</option>
-        <option value="3">机械</option>
-        <option value="4">国防</option>
+      <select name="type" lay-filter="aihao">
+        <option value="computer">计算机</option>
+        <option value="chemistry" selected="">生化</option>
+        <option value="building">建筑学</option>
+        <option value="machine">机械</option>
+        <option value="protect">国防</option>
       </select>
     </div>
   </div>
   <div class="layui-form-item">
     <label class="layui-form-label">发明人</label>
     <div class="layui-input-block">
-      <input type="text" name="username" lay-verify="required" placeholder="请输入名字" autocomplete="off" class="layui-input">
+      <input type="text" name="main_per_name" lay-verify="required" placeholder="请输入名字" autocomplete="off" class="layui-input">
     </div>
   </div>
 
@@ -39,26 +38,26 @@
     <div class="layui-inline">
       <label class="layui-form-label">第一申请人姓名</label>
       <div class="layui-input-inline">
-        <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
+        <input type="tel" name="first_per_name"  autocomplete="off" class="layui-input">
       </div>
     </div>
     <div class="layui-inline">
       <label class="layui-form-label">第一申请人电话</label>
       <div class="layui-input-inline">
-        <input type="text" name="email" lay-verify="email" autocomplete="off" class="layui-input">
+        <input type="text" name="first_per_phone"  autocomplete="off" class="layui-input">
       </div>
     </div>
     <div class="layui-inline">
       <label class="layui-form-label">第一申请人身份证</label>
       <div class="layui-input-inline">
-        <input type="text" name="email" lay-verify="email" autocomplete="off" class="layui-input">
+        <input type="text" name="first_per_card_num"  autocomplete="off" class="layui-input">
       </div>
     </div>
   </div>
   <div class="layui-form-item">
     <label class="layui-form-label">第一申请人联系地址</label>
     <div class="layui-input-block">
-      <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入名称" class="layui-input">
+      <input type="text" name="first_per_address"  autocomplete="off" placeholder="请输入名称" class="layui-input">
     </div>
   </div>
   <div class="layui-form-item">
@@ -73,17 +72,19 @@
   <div class="layui-form-item">
     <label class="layui-form-label">是否专利优先申请</label>
     <div class="layui-input-block">
-      <input type="checkbox" name="like[write]" title="是">
+      <input type="checkbox" name="priority" title="是">
     </div>
   </div>
 
   <div class="layui-form-item layui-form-text">
     <label class="layui-form-label">专利描述</label>
     <div class="layui-input-block">
-      <textarea placeholder="请输入内容" class="layui-textarea"></textarea>
+      <textarea placeholder="请输入内容" name="description" class="layui-textarea"></textarea>
     </div>
   </div>
+
   <div class="layui-form-item layui-form-text">
+      <!--
     <label class="layui-form-label">专利申请文档上传</label>
     <button type="button" class="layui-btn" id="test1">
       <i class="layui-icon">&#xe67c;</i>上传申请书
@@ -91,6 +92,7 @@
     <button type="button" class="layui-btn" id="test1">
       <i class="layui-icon">&#xe601;</i>下载申请书样本
     </button>
+    -->
     <script>
     layui.use('upload', function(){
       var upload = layui.upload;
@@ -118,7 +120,7 @@
   </div>-->
   <div class="layui-form-item">
     <div class="layui-input-block">
-      <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+      <button class="layui-btn" lay-submit="" lay-filter="demo1" type="submit">立即提交</button>
       <button type="reset" class="layui-btn layui-btn-primary">重置</button>
     </div>
   </div>
@@ -133,29 +135,6 @@ layui.use(['form', 'layedit', 'laydate'], function(){
   ,layedit = layui.layedit
   ,laydate = layui.laydate;
 
-  //日期
-  laydate.render({
-    elem: '#date'
-  });
-  laydate.render({
-    elem: '#date1'
-  });
-
-  //创建一个编辑器
-  var editIndex = layedit.build('LAY_demo_editor');
-
-  //自定义验证规则
-  form.verify({
-    title: function(value){
-      if(value.length < 5){
-        return '标题至少得5个字符啊';
-      }
-    }
-    ,pass: [/(.+){6,12}$/, '密码必须6到12位']
-    ,content: function(value){
-      layedit.sync(editIndex);
-    }
-  });
 
   //监听指定开关
   form.on('switch(switchTest)', function(data){
@@ -166,12 +145,12 @@ layui.use(['form', 'layedit', 'laydate'], function(){
   });
 
   //监听提交
-  form.on('submit(demo1)', function(data){
+  {#form.on('submit(demo1)', function(data){
     layer.alert(JSON.stringify(data.field), {
       title: '最终的提交信息'
     })
     return false;
-  });
+  });#}
 
 
 });

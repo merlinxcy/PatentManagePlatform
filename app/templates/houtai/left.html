@@ -11,14 +11,14 @@
 			<dl class="system_log">
 				<dt>
 					<img class="icon1" src="{{ url_for('static',filename='img/coin03.png') }}" /><img class="icon2"
-						src="{{ url_for('static',filename='img/coin04.png') }}" /> 用户管理<img class="icon3"
+						src="{{ url_for('static',filename='img/coin04.png') }}" /> 用户信息<img class="icon3"
 						src="{{ url_for('static',filename='img/coin19.png') }}" /><img class="icon4"
 						src="{{ url_for('static',filename='img/coin20.png') }}" />
 				</dt>
 				<dd>
 					<img class="coin11" src="{{ url_for('static',filename='img/coin111.png') }}" /><img class="coin22"
-						src="{{ url_for('static',filename='img/coin222.png') }}" /><a class="cks" href="roatebottom.html"
-						target="main">会员管理</a><img class="icon5" src="{{ url_for('static',filename='img/coin21.png') }}" />
+						src="{{ url_for('static',filename='img/coin222.png') }}" /><a class="cks" href="{{ url_for('main.user_info') }}"
+						target="main">个人信息</a><img class="icon5" src="{{ url_for('static',filename='img/coin21.png') }}" />
 				</dd>
 			</dl>
 			<dl class="system_log">
@@ -48,12 +48,12 @@
 				</dt>
 				<dd>
 					<img class="coin11" src="{{ url_for('static',filename='img/coin111.png') }}" /><img class="coin22"
-						src="{{ url_for('static',filename='img/coin222.png') }}" /><a href="" target="main"
+						src="{{ url_for('static',filename='img/coin222.png') }}" /><a href="{{ url_for('main.fee_apply') }}" target="main"
 						class="cks">申请费用</a><img class="icon5" src="{{ url_for('static',filename='img/coin21.png') }}" />
 				</dd>
                 <dd>
 					<img class="coin11" src="{{ url_for('static',filename='img/coin111.png') }}" /><img class="coin22"
-						src="{{ url_for('static',filename='img/coin222.png') }}" /><a href="p1.html" target="main"
+						src="{{ url_for('static',filename='img/coin222.png') }}" /><a href="{{ url_for('main.fee_record') }}" target="main"
 						class="cks">申请记录</a><img class="icon5" src="{{ url_for('static',filename='img/coin21.png') }}" />
 				</dd>
 			</dl>
@@ -66,7 +66,12 @@
 				</dt>
 				<dd>
 					<img class="coin11" src="{{ url_for('static',filename='img/coin111.png') }}" /><img class="coin22"
-						src="{{ url_for('static',filename='img/coin222.png') }}" /><a class="cks">交易管理</a><img class="icon5"
+						src="{{ url_for('static',filename='img/coin222.png') }}" /><a class="cks" href="{{ url_for('main.trade_market') }} " target="main">交易市场</a><img class="icon5"
+						src="{{ url_for('static',filename='img/coin21.png') }}" />
+				</dd>
+                <dd>
+					<img class="coin11" src="{{ url_for('static',filename='img/coin111.png') }}" /><img class="coin22"
+						src="{{ url_for('static',filename='img/coin222.png') }}" /><a class="cks" href="{{ url_for('main.trade_apply') }} " target="main">发布交易</a><img class="icon5"
 						src="{{ url_for('static',filename='img/coin21.png') }}" />
 				</dd>
 			</dl>
@@ -98,7 +103,7 @@
 				</dt>
 				<dd>
 					<img class="coin11" src="{{ url_for('static',filename='img/coin111.png') }}" /><img class="coin22"
-						src="{{ url_for('static',filename='img/coin222.png') }}" /><a href="changepwd.html"
+						src="{{ url_for('static',filename='img/coin222.png') }}" /><a href="{{ url_for('main.doing')}}"
 						target="main" class="cks">修改密码</a><img class="icon5"
 						src="{{ url_for('static',filename='img/coin21.png') }}" />
 				</dd>

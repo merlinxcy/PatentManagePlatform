@@ -31,6 +31,6 @@ class RegisterCompanyForm(FlaskForm):
     mail_code = StringField(id='mail_code', validators=[DataRequired()])
     password = StringField(id='password', validators=[DataRequired()])
     email = StringField(id='email', validators=[DataRequired()])
-    phone = StringField(id='phone', validators=[DataRequired()])
+    per_phone = StringField(id='per_phone', validators=[DataRequired()])
     per_name = StringField(id='per_name', validators=[DataRequired()])
-
+    address = StringField(id='address', validators=[DataRequired()])

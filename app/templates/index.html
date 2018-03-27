@@ -1,10 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-</body>
-</html>
+<title>中国及多国专利审查信息查询</title>
+<style>
+.divtext { position:absolute; float:right; top:35px; right:15px; z-index:10; width:650px; height:30px; line-height:30px; color:#000; font-size: 22px;}
+.divtext > a { color:#000;text-decoration: none}
+.divtext > a:hover { color:#fff;}
+.divtext > span > a { color:#000;text-decoration: none}
+.divtext > span > a:hover { color:#fff;}
+</style>
+</head>
+<body background="">
+
+
+<div class="wrap">
+
+
+    <div class="banner" align="center">
+        专利申请|专利交易|专利评估   一站式服务
+    </div>
+
+
+</div>
+<br>
+<div align="center">
+    <a href="{{ url_for('auth.login') }}">
+        <img src="{{ url_for('static',filename='images/go.gif') }}" align="center">
+    </a>
+    <br><br>
+    <a href="{{ url_for('admin.admin_login') }}">管理员登陆</a>
+</div>
+    <div class="title" align="center">
+        <center>
+           <table class="title_black">
+           <tbody><tr>
+           <td width="80%">
+           <div class="title_black_bottom"><br>
+	版权所有：上海电力学院
+	</div> </td>
+			<td width="20%"></td>
+           </tr>
+           </tbody></table>
+        </center>
+    </div>
+</div>
+<span style="display: none" id="">版权信息：国家知识产权局所有</span>
+
+
+</body></html>

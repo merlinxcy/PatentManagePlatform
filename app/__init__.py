@@ -22,5 +22,7 @@ db = SQLAlchemy(app)# utf-8解决中文乱码
 # 初始化蓝图 ISSUE:001
 from auth import auth as auth_blueprint
 from main import main as main_blueprint
+from admin import admin as admin_blueprint
 app.register_blueprint(auth_blueprint,static_folder='static', template_folder='templates')
 app.register_blueprint(main_blueprint,static_folder='static', template_folder='templates')
+app.register_blueprint(admin_blueprint,static_folder='static', template_folder='templates')
