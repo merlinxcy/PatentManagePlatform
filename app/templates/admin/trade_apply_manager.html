@@ -1,0 +1,104 @@
+{% extends 'admin/base2.html' %}
+{% block body %}
+    <body>
+<table class="layui-table">
+  <colgroup>
+    <col width="150">
+    <col width="200">
+    <col>
+  </colgroup>
+  <thead>
+    <tr>
+      <th>专利名</th>
+      <th>申请出售人</th>
+        <th>查看申请单</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if userinfo %}
+        {% for info in userinfo %}
+            <tr>
+            <td>{{ info.patent_name }}</td>
+                <td>{{ info.apply_per_name }}</td>
+            <td><button data-method="notice" class="layui-btn" id="more_info" index="{{ info.id }}" onclick="get_info(this)">查看详情</button></td>
+            <td><a href="" index="{{ info.id }}" onclick="check_it(this)">通过</a></td>
+            </tr>
+        {% endfor %}
+    {% endif %}
+  </tbody>
+</table>
+    </body>
+    <script>
+    function check_it(th){
+        $.ajax({
+                url: "{{ url_for('admin.trade_apply_manager_check') }}",
+                data: "id="+$(th).attr('index'),
+                dataType: 'text',
+                type: 'post',
+                success: function (result){
+                    if(result == 'ok'){
+                        var check = confirm('通过成功');
+                        if(check) {window.location.reload(true);}
+                    }
+                    else{
+                        alert('error');
+                        window.location.reload(true);
+                    }
+                }});
+    }
+    function get_info(th) {
+            $.ajax({
+                url: "{{ url_for('admin.trade_apply_manager_get') }}",
+                data: "id="+$(th).attr('index'),
+                dataType: 'text',
+                type: 'post',
+                success: function (result){
+                    result = jQuery.parseJSON(result);
+                    patent_id = result['patent_id'];
+                    apply_per_name = result['apply_per_name'];
+                    apply_per_phone = result['apply_per_phone'];
+                    date = result['date'];
+                    apply_description = result['apply_description'];
+                    check_status = result['check_status'];
+                     layui.use('layer', function() {
+                         layer = layui.layer;
+                         layer.open({
+                        type: 1
+                        ,
+                        title: false //不显示标题栏
+                        ,
+                        closeBtn: false
+                        ,
+                        area: '300px;'
+                        ,
+                        shade: 0.8
+                        ,
+                        id: 'LAY_layuipro' //设定一个id，防止重复弹出
+                        ,
+                        btn: ['Close']
+                        ,
+                        btnAlign: 'c'
+                        ,
+                        moveType: 1 //拖拽模式，0或者1
+                        ,
+                        content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">' +
+                        '用户名：' +patent_id+
+                        '<br>手机：' +apply_per_name+
+                        '<br>地域：' +apply_per_phone+
+                        '<br>地址：' +date+
+                        '<br>证件类型：' +check_status+
+                        '</div>'
+                        ,
+                        success: function (layero) {
+
+                        }
+                    });
+                     });
+                }});
+    }
+
+
+
+    </script>
+{% endblock %}

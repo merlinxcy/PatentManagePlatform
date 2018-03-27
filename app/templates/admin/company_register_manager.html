@@ -1,0 +1,106 @@
+{% extends 'admin/base2.html' %}
+{% block body %}
+    <body>
+<table class="layui-table">
+  <colgroup>
+    <col width="150">
+    <col width="200">
+    <col>
+  </colgroup>
+  <thead>
+    <tr>
+      <th>用户名</th>
+      <th>查看注册信息</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if userinfo %}
+        {% for info in userinfo %}
+            <tr>
+            <td>{{ info.name }}</td>
+            <td><button data-method="notice" class="layui-btn" id="more_info" index="{{ info.id }}" onclick="register_manager_getinfo_click(this)">查看详情</button></td>
+            <td><a href="" index="{{ info.id }}" onclick="register_manager_check(this)">通过</a></td>
+            </tr>
+        {% endfor %}
+    {% endif %}
+  </tbody>
+</table>
+    </body>
+    <script>
+    function register_manager_check(th){
+        $.ajax({
+                url: "{{ url_for('admin.register_manager_check') }}",
+                data: "id="+$(th).attr('index'),
+                dataType: 'text',
+                type: 'post',
+                success: function (result){
+                    if(result == 'ok'){
+                        alert('账户通过成功');
+                    }
+                    else{
+                        alert('error');
+                    }
+                }});
+    }
+    function register_manager_getinfo_click(th) {
+            $.ajax({
+                url: "{{ url_for('admin.company_register_manager_get') }}",
+                data: "id="+$(th).attr('index'),
+                dataType: 'text',
+                type: 'post',
+                success: function (result){
+                    result = jQuery.parseJSON(result);
+                    company_name = result['name'];
+                    card_type = result['card_type'];
+                    card_num = result['card_num'];
+                    company_location = result['company_location'];
+                    location_code = result['location_code'];
+                    address = result['address'];
+                    mail_address = result['mail_address'];
+                    per_phone = result['per_phone'];
+                    per_name = result['per_name'];
+                     layui.use('layer', function() {
+                         layer = layui.layer;
+                         layer.open({
+                        type: 1
+                        ,
+                        title: false //不显示标题栏
+                        ,
+                        closeBtn: false
+                        ,
+                        area: '300px;'
+                        ,
+                        shade: 0.8
+                        ,
+                        id: 'LAY_layuipro' //设定一个id，防止重复弹出
+                        ,
+                        btn: ['Close']
+                        ,
+                        btnAlign: 'c'
+                        ,
+                        moveType: 1 //拖拽模式，0或者1
+                        ,
+                        content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">公司名：' +
+                        company_name+'<br>公司地址：' +address+
+                        '<br>地域：' +company_location+
+                        '<br>邮编：' +location_code+
+                        '<br>证件类型：' +card_type+
+                        '<br>证件号码：' +card_num+
+                        '<br>邮箱：' +mail_address+
+                        '<br>联系人电话：'+per_name+
+                        '<br>联系人姓名：'+per_phone+
+                        '</div>'
+                        ,
+                        success: function (layero) {
+
+                        }
+                    });
+                     });
+                }});
+    }
+
+
+
+    </script>
+{% endblock %}

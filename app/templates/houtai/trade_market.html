@@ -1,0 +1,29 @@
+{% extends 'houtai/base2.html' %}
+{% block body %}
+    <body>
+        <ul class="layui-timeline">
+             {% if tradeinfo %}
+                 {% for i in tradeinfo %}
+                     <li class="layui-timeline-item">
+                        <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                        <div class="layui-timeline-content layui-text">
+                          <h3 class="layui-timeline-title">{{ i.apply_date }}</h3>
+                          <p>专利名：{{ i.patent_name }}</p>
+                          <ul>
+                            <li>申请人：{{ i.main_per_name }}</li>
+                            <li>描述：{{ i.description }}</li>
+                          </ul>
+                            <a href="{{ url_for('main.trade_perchase') }}?id={{ i.patent_id }}" class="layui-btn">购买</a>
+                        </div>
+                     </li>
+                 {% endfor %}
+            {% endif %}
+          <li class="layui-timeline-item">
+            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+            <div class="layui-timeline-content layui-text">
+              <div class="layui-timeline-title">暂无更多</div>
+            </div>
+          </li>
+        </ul>
+    </body>
+{% endblock %}

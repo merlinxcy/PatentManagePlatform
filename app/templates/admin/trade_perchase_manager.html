@@ -1,0 +1,50 @@
+{% extends 'admin/base2.html' %}
+{% block body %}
+    <body>
+<table class="layui-table">
+  <colgroup>
+    <col width="150">
+    <col width="200">
+    <col>
+  </colgroup>
+  <thead>
+    <tr>
+      <th>专利名</th>
+      <th>申请购买人</th>
+        <th>申请日期</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if info %}
+        {% for i in info %}
+            <tr>
+            <td>{{ i.patent_name }}</td>
+                <td>{{ i.perchase_per_name }}</td>
+                <td>{{ i.date }}</td>
+            <td><a href="" index="{{ i.id }}" onclick="javascript:check_it(this)">同意购买</a></td>
+            </tr>
+        {% endfor %}
+    {% endif %}
+  </tbody>
+</table>
+    <script>
+        function check_it(th){
+            $.ajax({
+                url: "{{ url_for('admin.trade_perchase_manager_check') }}",
+                data: "id="+$(th).attr('index'),
+                dataType: 'text',
+                type: 'post',
+                async: false,
+                success: function (result){
+                    if(result == 'ok'){
+                        alert('更新成功');
+                    }
+                    else{
+                        alert('error');
+                    }
+                }});
+        }
+    </script>
+    </body>
+{% endblock %}

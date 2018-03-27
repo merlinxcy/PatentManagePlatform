@@ -1,0 +1,134 @@
+{% extends 'admin/base.html' %}
+{% block body %}
+<body id="bg">
+	<!-- 左边节点 -->
+	<div class="container">
+
+		<div class="leftsidebar_box">
+			<a href="{{ url_for('admin.admin') }}" target="main"><div class="line">
+					<img src="{{ url_for('static',filename='img/coin01.png') }}" />&nbsp;&nbsp;首页
+				</div></a>
+			<dl class="system_log">
+				<dt>
+					<img class="icon1" src="{{ url_for('static',filename='img/coin03.png') }}" /><img class="icon2"
+						src="{{ url_for('static',filename='img/coin04.png') }}" /> 用户管理<img class="icon3"
+						src="{{ url_for('static',filename='img/coin19.png') }}" /><img class="icon4"
+						src="{{ url_for('static',filename='img/coin20.png') }}" />
+				</dt>
+				<dd>
+					<img class="coin11" src="{{ url_for('static',filename='img/coin111.png') }}" /><img class="coin22"
+						src="{{ url_for('static',filename='img/coin222.png') }}" /><a class="cks" href="{{ url_for('admin.register_manager') }}"
+						target="main">个人注册管理</a><img class="icon5" src="{{ url_for('static',filename='img/coin21.png') }}" />
+				</dd>
+                <dd>
+					<img class="coin11" src="{{ url_for('static',filename='img/coin111.png') }}" /><img class="coin22"
+						src="{{ url_for('static',filename='img/coin222.png') }}" /><a class="cks" href="{{ url_for('admin.company_register_manager') }}"
+						target="main">企业注册管理</a><img class="icon5" src="{{ url_for('static',filename='img/coin21.png') }}" />
+				</dd>
+			</dl>
+			<dl class="system_log">
+				<dt>
+					<img class="icon1" src="{{ url_for('static',filename='img/coin01.png') }}" /><img class="icon2"
+						src="{{ url_for('static',filename='img/coin02.png') }}" /> 专利申请管理系统<img class="icon3"
+						src="{{ url_for('static',filename='img/coin19.png') }}" /><img class="icon4"
+						src="{{ url_for('static',filename='img/coin20.png') }}" />
+				</dt>
+				<dd>
+					<img class="coin11" src="{{ url_for('static',filename='img/coin111.png') }}" /><img class="coin22"
+						src="{{ url_for('static',filename='img/coin222.png') }}" /><a class="cks" href="{{ url_for('admin.patent_apply_manager') }}"
+						target="main">申请管理</a><img class="icon5" src="{{ url_for('static',filename='img/coin21.png') }}" />
+				</dd>
+				{#<dd>
+					<img class="coin11" src="{{ url_for('static',filename='img/coin111.png') }}" /><img class="coin22"
+						src="{{ url_for('static',filename='img/coin222.png') }}" /><a class="cks" href="{{ url_for('main.patent_record') }}"
+						target="main">第二次申请审查</a><img class="icon5" src="{{ url_for('static',filename='img/coin21.png') }}" />
+				</dd>#}
+			</dl>
+			<dl class="system_log">
+				<dt>
+					<img class="icon1" src="{{ url_for('static',filename='img/coin07.png') }}" /><img class="icon2"
+						src="{{ url_for('static',filename='img/coin08.png') }}" /> 费用管理系统<img class="icon3"
+						src="{{ url_for('static',filename='img/coin19.png') }}" /><img class="icon4"
+						src="{{ url_for('static',filename='img/coin20.png') }}" />
+				</dt>
+				<dd>
+					<img class="coin11" src="{{ url_for('static',filename='img/coin111.png') }}" /><img class="coin22"
+						src="{{ url_for('static',filename='img/coin222.png') }}" /><a href="{{ url_for('admin.fee_apply_manager') }}" target="main"
+						class="cks">费用申请管理</a><img class="icon5" src="{{ url_for('static',filename='img/coin21.png') }}" />
+				</dd>
+                {#<dd>
+					<img class="coin11" src="{{ url_for('static',filename='img/coin111.png') }}" /><img class="coin22"
+						src="{{ url_for('static',filename='img/coin222.png') }}" /><a href="p1.html" target="main"
+						class="cks">费用处理记录</a><img class="icon5" src="{{ url_for('static',filename='img/coin21.png') }}" />
+				</dd>#}
+			</dl>
+			<dl class="system_log">
+				<dt>
+					<img class="icon1" src="{{ url_for('static',filename='img/coin10.png') }}" /><img class="icon2"
+						src="{{ url_for('static',filename='img/coin09.png') }}" /> 专利交易管理系统<img class="icon3"
+						src="{{ url_for('static',filename='img/coin19.png') }}" /><img class="icon4"
+						src="{{ url_for('static',filename='img/coin20.png') }}" />
+				</dt>
+				<dd>
+					<img class="coin11" src="{{ url_for('static',filename='img/coin111.png') }}" /><img class="coin22"
+						src="{{ url_for('static',filename='img/coin222.png') }}" /><a class="cks" href="{{ url_for('admin.trade_apply_manager') }} " target="main">交易出售申请管理</a><img class="icon5"
+						src="{{ url_for('static',filename='img/coin21.png') }}" />
+				</dd>
+                <dd>
+					<img class="coin11" src="{{ url_for('static',filename='img/coin111.png') }}" /><img class="coin22"
+						src="{{ url_for('static',filename='img/coin222.png') }}" /><a class="cks" href="{{ url_for('admin.trade_perchase_manager') }} " target="main">交易购买申请管理</a><img class="icon5"
+						src="{{ url_for('static',filename='img/coin21.png') }}" />
+				</dd>
+
+			</dl>
+			<dl class="system_log">
+				<dt>
+					<img class="icon1" src="{{ url_for('static',filename='img/coin11.png') }}" /><img class="icon2"
+						src="{{ url_for('static',filename='img/coin12.png') }}" /> 专利培训管理系统<img class="icon3"
+						src="{{ url_for('static',filename='img/coin19.png') }}" /><img class="icon4"
+						src="{{ url_for('static',filename='img/coin20.png') }}" />
+				</dt>
+				<dd>
+					<img class="coin11" src="{{ url_for('static',filename='img/coin111.png') }}" /><img class="coin22"
+						src="{{ url_for('static',filename='img/coin222.png') }}" /><a class="cks" href="{{ url_for('admin.peixun_apply_manager') }} " target="main">培训申请管理</a><img
+						class="icon5" src="{{ url_for('static',filename='img/coin21.png') }}" />
+				</dd>
+                {#<dd>
+					<img class="coin11" src="{{ url_for('static',filename='img/coin111.png') }}" /><img class="coin22"
+						src="{{ url_for('static',filename='img/coin222.png') }}" /><a class="cks" href="{{ url_for('main.peixun_record') }}" target="main">培训管理</a><img
+						class="icon5" src="{{ url_for('static',filename='img/coin21.png') }}" />
+				</dd>#}
+			</dl>
+
+			<dl class="system_log">
+				<dt>
+					<img class="icon1" src="{{ url_for('static',filename='img/coinL1.png') }}" /><img class="icon2"
+						src="{{ url_for('static',filename='img/coinL2.png') }}" /> 系统管理<img class="icon3"
+						src="{{ url_for('static',filename='img/coin19.png') }}" /><img class="icon4"
+						src="{{ url_for('static',filename='img/coin20.png') }}" />
+				</dt>
+				<dd>
+					<img class="coin11" src="{{ url_for('static',filename='img/coin111.png') }}" /><img class="coin22"
+						src="{{ url_for('static',filename='img/coin222.png') }}" /><a href="{{ url_for('main.doing') }}"
+						target="main" class="cks">修改密码</a><img class="icon5"
+						src="{{ url_for('static',filename='img/coin21.png') }}" />
+				</dd>
+				<dd>
+					<img class="coin11" src="{{ url_for('static',filename='img/coin111.png') }}" /><img class="coin22"
+						src="{{ url_for('static',filename='img/coin222.png') }}" /><a class="cks" id='logout' href="javascript:top.location.href='{{ url_for('admin.admin_logout') }}'">退出</a><img
+						class="icon5" src="{{ url_for('static',filename='img/coin21.png') }}" />
+				</dd>
+			</dl>
+
+		</div>
+
+	</div>
+<script>
+    $.ready(function () {
+        $('#logout').click(function () {
+            href.location = "{{ url_for('auth.logout') }}";
+        });
+    });
+</script>
+</body>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'houtai/base2.html' %}
+{% block body %}
+<body>
+<table class="layui-table">
+  <colgroup>
+    <col width="150">
+    <col width="200">
+    <col>
+  </colgroup>
+  <thead>
+    <tr>
+      <th>费用申请人姓名</th>
+      <th>申请人手机号</th>
+      <th>申请日期</th>
+        <th>申请费用专利号</th>
+        <th>费用描述</th>
+        <th>状态</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if info %}
+        {% for i in info %}
+            <tr>
+                <td>{{ i.name }}</td>
+                <td>{{ i.phone }}</td>
+                <td>{{ i.date }}</td>
+                <td>{{ i.patent_id }}</td>
+                <td>{{ i.description }}</td>
+                <td>{{ i.check_status }}</td>
+            </tr>
+        {% endfor %}
+  {% endif %}
+  </tbody>
+</table>
+</body>
+{% endblock %}

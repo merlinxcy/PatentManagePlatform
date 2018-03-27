@@ -1,0 +1,138 @@
+{% extends 'admin/base2.html' %}
+{% block body %}
+    <body>
+<table class="layui-table">
+  <colgroup>
+    <col width="150">
+    <col width="200">
+    <col>
+  </colgroup>
+  <thead>
+    <tr>
+        <th>申请专利名</th>
+        <th>第一申请人</th>
+        <th>专利类型</th>
+        <th>申请日期</th>
+        <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if userinfo %}
+        {% for info in userinfo %}
+            <tr>
+                <td>{{ info.name }}</td>
+                <td>{{ info.main_per_name }}</td>
+                <td>{{ info.type }}</td>
+                <td>{{ info.date }}</td>
+                <td>
+                <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail" index="{{ info.id }}" onclick="javascript:get_info(this);">查看</a>
+                <a class="layui-btn layui-btn-xs" lay-event="edit" index="{{ info.id }}" onclick="javascript:show(this);">操作</a>
+            </td>
+            </tr>
+        {% endfor %}
+    {% endif %}
+  </tbody>
+</table>
+    </body>
+    <script>
+    function show(th){
+        layer.open({
+              content: '操作'
+              ,btn: ['通过第1次审查','通过第2次审查', '不通过']
+              ,yes: function(index, layero){
+                //按钮【通过第1次审查】的回调
+                $.ajax({
+                    url:"{{ url_for('admin.patent_apply_manager_action') }}",
+                    data:"id="+$(th).attr('index')+"&action=1checked",
+                    dataType:"text",
+                    type:"post",
+                    success:function(result){
+                        alert('第1次审查通过');
+                    }
+                });
+              }
+              ,btn2: function(index, layero){
+                //按钮【通过第2次审查】的回调
+                $.ajax({
+                    url:"{{ url_for('admin.patent_apply_manager_action') }}",
+                    data:"id="+$(th).attr('index')+"&action=2checked",
+                    dataType:"text",
+                    type:"post",
+                    success:function(result){
+                        alert('第2次审查通过');
+                    }
+                });
+                //return false 开启该代码可禁止点击该按钮关闭
+              }
+              ,btn3: function(index, layero){
+                //按钮【不通过】的回调
+                $.ajax({
+                    url:"{{ url_for('admin.patent_apply_manager_action') }}",
+                    data:"id="+$(th).attr('index')+"&action=reject",
+                    dataType:"text",
+                    type:"post",
+                    success:function(result){
+                        alert('不通过提交');
+                    }
+                });
+                //return false 开启该代码可禁止点击该按钮关闭
+              }
+            });
+    }
+    function get_info(th) {
+            $.ajax({
+                url: "{{ url_for('admin.patent_apply_manager_get') }}",
+                data: "id="+$(th).attr('index'),
+                dataType: 'text',
+                type: 'post',
+                success: function (result){
+                    result = jQuery.parseJSON(result);
+                    u_name = result['name'];
+                    type = result['type'];
+                    main_per_name = result['main_per_name'];
+                    first_per_name = result['first_per_name'];
+                    first_per_phone = result['first_per_phone'];
+                    first_per_card_num = result['first_per_card_num'];
+                    first_per_address = result['first_per_address'];
+                    date = result['date'];
+                    priority = result['priority'];
+                    description = result['description'];
+                    check_status = result['check_status'];
+                     layui.use('layer', function() {
+                         layer = layui.layer;
+                         layer.open({
+                        type: 1
+                        ,
+                        title: false //不显示标题栏
+                        ,
+                        closeBtn: false
+                        ,
+                        area: '300px;'
+                        ,
+                        shade: 0.8
+                        ,
+                        id: 'LAY_layuipro' //设定一个id，防止重复弹出
+                        ,
+                        btn: ['Close']
+                        ,
+                        btnAlign: 'c'
+                        ,
+                        moveType: 1 //拖拽模式，0或者1
+                        ,
+                        content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">'+
+                            '专利名称：' +u_name+ '<br>专利类型：' +type+ '<br>申请人：' +main_per_name+ '<br>第一发明人：' +first_per_name+ '<br>第一发明人手机：' +first_per_phone+ '<br>第一发明人卡号：' +first_per_card_num+ '<br>第一发明人地址：' +first_per_address+ '<br>申请日期：' +date+ '<br>申请优先级：' +priority+ '<br>专利描述：' +description+
+                        '<br>状态：'+check_status
+                        + '</div>'
+                        ,
+                        success: function (layero) {
+
+                        }
+                    });
+                     });
+                }});
+    }
+
+
+
+    </script>
+{% endblock %}
